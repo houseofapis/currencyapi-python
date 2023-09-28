@@ -1,7 +1,7 @@
 # CurrencyApi Python wrapper 
 
 
-[![PyPI version](https://badge.fury.io/py/currencyapi.svg)](https://pypi.org/project/currencyapi/) [![Coverage Status](https://coveralls.io/repos/github/houseofapis/currencyapi-python/badge.svg?branch=master)](https://coveralls.io/github/houseofapis/currencyapi-python?branch=master) 
+[![PyPI version](https://badge.fury.io/py/currencyapi.svg)](https://pypi.org/project/currencyapi/) [![Coverage Status](https://coveralls.io/repos/github/houseofapis/currencyapi-python/badge.svg?branch=main)](https://coveralls.io/github/houseofapis/currencyapi-python?branch=main) 
 
 
 <a href="https://currencyapi.net" title="CurrencyApi">CurrencyApi.net</a> provides live currency rates via a REST API. A live currency feed for over 152 currencies, including physical (USD, GBP, EUR + more) and cryptos (Bitcoin, Litecoin, Ethereum + more). A JSON and XML currency api updated every 60 seconds. 
