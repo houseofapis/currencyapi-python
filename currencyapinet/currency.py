@@ -1,8 +1,8 @@
-from currencyapi.endpoints.rates import Rates
-from currencyapi.endpoints.convert import Convert
-from currencyapi.endpoints.history import History
-from currencyapi.endpoints.timeframe import Timeframe
-from currencyapi.endpoints.currencies import Currencies
+from currencyapinet.endpoints.rates import Rates
+from currencyapinet.endpoints.convert import Convert
+from currencyapinet.endpoints.history import History
+from currencyapinet.endpoints.timeframe import Timeframe
+from currencyapinet.endpoints.currencies import Currencies
 
 class Currency(object):
     def __init__(self, api_key: str):

@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from currencyapi.endpoints.history import History
+from currencyapinet.endpoints.history import History
 
 class Test(TestCase):
 

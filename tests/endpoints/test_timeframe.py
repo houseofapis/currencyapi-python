@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from currencyapi.endpoints.timeframe import Timeframe
+from currencyapinet.endpoints.timeframe import Timeframe
 
 class Test(TestCase):
 

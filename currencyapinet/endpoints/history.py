@@ -1,4 +1,4 @@
-from currencyapi.endpoints.endpoint import Endpoint
+from currencyapinet.endpoints.endpoint import Endpoint
 
 HISTORY_ENDPOINT = 'history'
 

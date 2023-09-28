@@ -1,9 +1,9 @@
-from currencyapi import Currency
-from currencyapi.endpoints.rates import Rates
-from currencyapi.endpoints.history import History
-from currencyapi.endpoints.timeframe import Timeframe
-from currencyapi.endpoints.convert import Convert
-from currencyapi.endpoints.currencies import Currencies
+from currencyapinet import Currency
+from currencyapinet.endpoints.rates import Rates
+from currencyapinet.endpoints.history import History
+from currencyapinet.endpoints.timeframe import Timeframe
+from currencyapinet.endpoints.convert import Convert
+from currencyapinet.endpoints.currencies import Currencies
 from unittest import TestCase
 
 class Test(TestCase):

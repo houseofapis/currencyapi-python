@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from currencyapi.endpoints.convert import Convert
+from currencyapinet.endpoints.convert import Convert
 
 class Test(TestCase):
 

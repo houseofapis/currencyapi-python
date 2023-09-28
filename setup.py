@@ -4,7 +4,7 @@ from os.path import abspath, dirname, join
 README_MD = open(join(dirname(abspath(__file__)), "README.md")).read()
 
 setup(
-    name="currencyapi",
+    name="currencyapinet",
     version="1.0.0",
     packages=find_packages(exclude="tests"),
     description="Python wrapper for CurrencyApi.net",

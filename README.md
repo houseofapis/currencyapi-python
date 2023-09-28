@@ -36,12 +36,12 @@ Python wrapper for <a href="https://currencyapi.net" title="CurrencyApi">Currenc
 #### Using npm:
 
 ```bash
-pip install currencyapi
+pip install currencyapinet
 ```
 then import the package with:
 
 ```python
-from currencyapi.currency import Currency
+from currencyapinet.currency import Currency
 ```
 
 ## Usage

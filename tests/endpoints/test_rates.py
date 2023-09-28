@@ -1,6 +1,6 @@
 from unittest.mock import Mock, patch
 from unittest import TestCase
-from currencyapi.endpoints.rates import Rates
+from currencyapinet.endpoints.rates import Rates
 import requests
 
 class Test(TestCase):

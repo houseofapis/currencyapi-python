@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from currencyapi.endpoints.currencies import Currencies
+from currencyapinet.endpoints.currencies import Currencies
 
 class Test(TestCase):
 
