@@ -38,8 +38,9 @@ class Endpoint(object):
         return headers
     
     def _build_url_params(self):
-        url_params = {'key': self.api_key}
-        return url_params | self.param
+        params = {'key': self.api_key}
+        params.update(self.param)
+        return params
 
     def get(self):
         url = BASE_URL + self.endpoint
