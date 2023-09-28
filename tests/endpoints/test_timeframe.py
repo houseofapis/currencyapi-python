@@ -24,3 +24,25 @@ class Test(TestCase):
 
     def test_history_endpoint_set(self):
         self.assertEqual('timeframe', self.class_under_test.endpoint)
+
+    def test_timeframe__build_url_params(self):
+        self.assertDictEqual(
+            {'base': 'USD', 'key': 'fakekey', 'output': 'JSON'}, 
+            self.class_under_test._build_url_params()
+        )
+        self.class_under_test.output('xMl')
+        self.assertDictEqual(
+            {'base': 'USD', 'key': 'fakekey', 'output': 'XML'}, 
+            self.class_under_test._build_url_params()
+        )
+        self.class_under_test.base('gbP')
+        self.assertDictEqual(
+            {'base': 'GBP', 'key': 'fakekey', 'output': 'XML'}, 
+            self.class_under_test._build_url_params()
+        )
+        self.class_under_test.start_date('2023-01-01')
+        self.class_under_test.end_date('2023-01-02')
+        self.assertDictEqual(
+            {'base': 'GBP', 'start_date': '2023-01-01', 'end_date': '2023-01-02', 'key': 'fakekey', 'output': 'XML'},
+            self.class_under_test._build_url_params()
+        )

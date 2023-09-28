@@ -13,7 +13,7 @@ test: ## Run the tests
 	${DOCKER_COMMAND} python -m coverage run -m unittest discover
 
 run: ## Run the sample testing file
-	${DOCKER_COMMAND} python index.py
+	${DOCKER_COMMAND} python run.py
 
 test-coverage: ## Show test coverage
 	${DOCKER_COMMAND} python -m coverage report
@@ -24,8 +24,11 @@ setup: ## Setup
 exec: ## Run test file
 	${DOCKER_COMMAND} sh
 
-publish: ## Publish version
-	${DOCKER_COMMAND} npm publish
+build-package: ## Build pip package
+	${DOCKER_COMMAND} python setup.py sdist bdist_wheel
+
+upload-package: ## Upload pip package
+	${DOCKER_COMMAND} python -m twine upload dist/*
 
 help:
 	@grep -h -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'

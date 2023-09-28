@@ -7,7 +7,7 @@ setup(
     name="currencyapi",
     version="1.0.0",
     packages=find_packages(exclude="tests"),
-    description="Python Client for CurrencyApi.net",
+    description="Python wrapper for CurrencyApi.net",
     long_description=README_MD,
     long_description_content_type="text/markdown",
     url="https://github.com/houseofapis/currencyapi-python",
@@ -16,7 +16,7 @@ setup(
     classifiers=[
         "License :: OSI Approved :: MIT License",
         "Intended Audience :: Developers",
-        "Programming Language :: Python :: 3 :: Only"
+        "Programming Language :: Python :: 3 :: Only",
         "Topic :: Software Development :: Libraries :: Python Modules",
     ],
     install_requires=[

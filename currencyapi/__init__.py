@@ -1,1 +1,1 @@
-from currencyapi.client import Client
+from currencyapi.currency import Currency

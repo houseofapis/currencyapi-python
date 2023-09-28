@@ -23,8 +23,8 @@ Python wrapper for <a href="https://currencyapi.net" title="CurrencyApi">Currenc
 
 #### Prerequisites
 
-- Minimum NodeJs v8 (npm v5 and above)
-- Working on Python 3.x
+- Minimum Python version 3.5
+- Last tested and working on Python 3.11.5
 - Free or Paid account with CurrencyApi.net
 
 #### Test Coverage
@@ -41,7 +41,7 @@ pip install currencyapi
 then import the package with:
 
 ```python
-from currencyapi.client import Client
+from currencyapi.currency import Currency
 ```
 
 ## Usage
@@ -49,7 +49,7 @@ from currencyapi.client import Client
 ### Instantiating
 
 ```python
-currency = Client('API_KEY')
+currency = Currency('API_KEY')
 ```
 
 ### Live rates:

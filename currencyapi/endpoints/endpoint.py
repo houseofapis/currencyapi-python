@@ -36,10 +36,14 @@ class Endpoint(object):
         headers['X-Sdk'] = 'python'
         headers['Content-Type'] = content_type
         return headers
+    
+    def _build_url_params(self):
+        url_params = {'key': self.api_key}
+        return url_params | self.param
 
     def get(self):
         url = BASE_URL + self.endpoint
-        r = requests.get(url, params=self.param, headers=self._headers())
+        r = requests.get(url, params=self._build_url_params(), headers=self._headers())
 
         if self._isXml():
             return r.text

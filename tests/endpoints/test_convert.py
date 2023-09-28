@@ -24,3 +24,21 @@ class Test(TestCase):
 
     def test_history_endpoint_set(self):
         self.assertEqual('convert', self.class_under_test.endpoint)
+
+    def test_convert__build_url_params(self):
+        self.assertDictEqual(
+            {'key': 'fakekey', 'output': 'JSON'}, 
+            self.class_under_test._build_url_params()
+        )
+        self.class_under_test.output('xMl')
+        self.assertDictEqual(
+            {'key': 'fakekey', 'output': 'XML'}, 
+            self.class_under_test._build_url_params()
+        )
+        self.class_under_test.from_currency('gbP')
+        self.class_under_test.to_currency('uSd')
+        self.class_under_test.amount(10)
+        self.assertDictEqual(
+            {'key': 'fakekey', 'output': 'XML', 'from': 'GBP', 'to': 'USD', 'amount': 10},
+            self.class_under_test._build_url_params()
+        )

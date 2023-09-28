@@ -64,4 +64,20 @@ class Test(TestCase):
             mock_data, 
             self.class_under_test.get()
         )
+
+    def test_endpoint__build_url_params(self):
+        self.assertDictEqual(
+            {'key': 'fakekey', 'output': 'JSON'}, 
+            self.class_under_test._build_url_params()
+        )
+        self.class_under_test.output('xMl')
+        self.assertDictEqual(
+            {'key': 'fakekey', 'output': 'XML'}, 
+            self.class_under_test._build_url_params()
+        )
+        self.class_under_test._base('gbP')
+        self.assertDictEqual(
+            {'base': 'GBP', 'key': 'fakekey', 'output': 'XML'}, 
+            self.class_under_test._build_url_params()
+        )
         
