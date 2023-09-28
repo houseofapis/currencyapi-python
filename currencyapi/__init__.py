@@ -1,0 +1,1 @@
+from currencyapi.client import Client
