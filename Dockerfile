@@ -6,5 +6,3 @@ RUN pip install requests \
                 coverage \
                 twine \
                 wheel
-
-COPY . .
