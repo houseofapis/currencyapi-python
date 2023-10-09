@@ -33,8 +33,6 @@ Python wrapper for <a href="https://currencyapi.net" title="CurrencyApi">Currenc
 
 ## Installation
 
-#### Using npm:
-
 ```bash
 pip install currencyapinet
 ```
