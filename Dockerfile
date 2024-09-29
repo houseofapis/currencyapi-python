@@ -5,4 +5,5 @@ WORKDIR /app
 RUN pip install requests \
                 coverage \
                 twine \
-                wheel
+                wheel \
+                setuptools

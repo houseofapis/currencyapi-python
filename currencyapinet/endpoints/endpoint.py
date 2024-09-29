@@ -8,7 +8,7 @@ XML_OUTPUT = 'XML'
 
 class Endpoint(object):
     def __init__(self, api_key: str, endpoint: str):
-        self.api_key = api_key.lower()
+        self.api_key = api_key
         self.endpoint = endpoint.lower()
         self.param = {}
         self.param['output'] = DEFAULT_OUTPUT.upper()

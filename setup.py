@@ -5,12 +5,12 @@ README_MD = open(join(dirname(abspath(__file__)), "README.md")).read()
 
 setup(
     name="currencyapinet",
-    version="1.0.2",
+    version="1.0.4",
     packages=find_packages(exclude="tests"),
     description="Python wrapper for CurrencyApi.net",
     long_description=README_MD,
     long_description_content_type="text/markdown",
-    url="https://github.com/houseofapis/currencyapi-python",
+    url="https://currencyapi.net/sdk/python",
     author_name="Oli Girling",
     author_email="support@currencyapi.net",
     classifiers=[
