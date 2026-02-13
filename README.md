@@ -29,8 +29,8 @@ Alternatively keep reading below.
 
 #### Prerequisites
 
-- Minimum Python version 3.5
-- Last tested and working on Python 3.11.5
+- Minimum Python version 3.10
+- Last tested and working on Python 3.14
 - Free or Paid account with CurrencyApi.net
 
 #### Test Coverage
