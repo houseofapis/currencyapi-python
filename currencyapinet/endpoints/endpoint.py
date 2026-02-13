@@ -6,7 +6,7 @@ DEFAULT_BASE = 'USD'
 DEFAULT_OUTPUT = 'JSON'
 XML_OUTPUT = 'XML'
 
-class Endpoint(object):
+class Endpoint:
     def __init__(self, api_key: str, endpoint: str):
         self.api_key = api_key
         self.endpoint = endpoint.lower()

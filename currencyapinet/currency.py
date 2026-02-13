@@ -4,7 +4,7 @@ from currencyapinet.endpoints.history import History
 from currencyapinet.endpoints.timeframe import Timeframe
 from currencyapinet.endpoints.currencies import Currencies
 
-class Currency(object):
+class Currency:
     def __init__(self, api_key: str):
         self._api_key = api_key
 
