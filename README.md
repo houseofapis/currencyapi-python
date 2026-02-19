@@ -1,10 +1,10 @@
-# CurrencyApi Python wrapper 
+# CurrencyApi Python wrapper
 
 
-[![PyPI version](https://badge.fury.io/py/currencyapinet.svg)](https://pypi.org/project/currencyapinet/) [![Coverage Status](https://coveralls.io/repos/github/houseofapis/currencyapi-python/badge.svg?branch=main)](https://coveralls.io/github/houseofapis/currencyapi-python?branch=main) 
+[![PyPI version](https://badge.fury.io/py/currencyapinet.svg)](https://pypi.org/project/currencyapinet/) [![Coverage Status](https://coveralls.io/repos/github/houseofapis/currencyapi-python/badge.svg?branch=main)](https://coveralls.io/github/houseofapis/currencyapi-python?branch=main)
 
 
-<a href="https://currencyapi.net" title="CurrencyApi">CurrencyApi.net</a> provides live currency rates via a REST API. A live currency feed for over 152 currencies, including physical (USD, GBP, EUR + more) and cryptos (Bitcoin, Litecoin, Ethereum + more). A JSON and XML currency api updated every 60 seconds. 
+<a href="https://currencyapi.net" title="CurrencyApi">CurrencyApi.net</a> provides live currency rates via a REST API. A live currency feed for over 152 currencies, including physical (USD, GBP, EUR + more) and cryptos (Bitcoin, Litecoin, Ethereum + more). A JSON and XML currency api updated every 60 seconds.
 
 Features:
 
@@ -13,13 +13,14 @@ Features:
 - Popular cryptocurrencies included; Bitcoin, Litecoin etc.
 - Convert currencies on the fly with the convert endpoint.
 - Historical currency rates back to year 2000.
+- OHLC (Open, High, Low, Close) data for technical analysis (Tier 3+).
 - Easy to follow <a href="https://currencyapi.net/documentation" title="currency-api-documentation">documentation</a>
 
 Signup for a free or paid account <a href="https://currencyapi.net/#pricing-sec" title="currency-api-pricing">here</a>.
 
 ## This package is a:
 
-Python wrapper for <a href="https://currencyapi.net" title="CurrencyApi">CurrencyApi.net</a> endpoints.
+Python wrapper for <a href="https://currencyapi.net" title="CurrencyApi">CurrencyApi.net</a> endpoints (API v2).
 
 ## Developer Guide
 
@@ -40,3 +41,127 @@ Alternatively keep reading below.
 ## Installation
 
 View our <a href="https://currencyapi.net/sdk/python">Python SDK</a> guide
+
+```
+pip install currencyapinet
+```
+
+## Usage
+
+```python
+from currencyapinet import Currency
+
+currency = Currency('YOUR_API_KEY')
+```
+
+---
+
+### Rates
+
+Returns live currency rates for all supported currencies. Base currency defaults to USD.
+
+```python
+result = currency.rates().get()
+
+# With optional base currency
+result = currency.rates().base('EUR').get()
+
+# XML output
+result = currency.rates().output('XML').get()
+```
+
+---
+
+### Convert
+
+Converts an amount from one currency to another.
+
+```python
+result = currency.convert().from_currency('USD').to_currency('EUR').amount(100).get()
+```
+
+---
+
+### History
+
+Returns historical currency rates for a specific date.
+
+```python
+result = currency.history().date('2023-12-25').get()
+
+# With optional base currency
+result = currency.history().base('GBP').date('2023-12-25').get()
+```
+
+---
+
+### Timeframe
+
+Returns historical currency rates for a date range (max 365 days).
+
+```python
+result = currency.timeframe().start_date('2023-12-01').end_date('2023-12-31').get()
+
+# With optional base currency
+result = currency.timeframe().base('GBP').start_date('2023-12-01').end_date('2023-12-31').get()
+```
+
+---
+
+### Currencies
+
+Returns a list of all supported currencies.
+
+```python
+result = currency.currencies().get()
+```
+
+---
+
+### OHLC
+
+Returns OHLC (Open, High, Low, Close) data for a currency pair on a specific date. Requires a Tier 3 subscription.
+
+**Parameters:**
+
+| Parameter  | Required | Description |
+|------------|----------|-------------|
+| `currency` | Yes      | Target currency code (e.g. `EUR`, `GBP`, `BTC`) |
+| `date`     | Yes      | Date in `YYYY-MM-DD` format (must be in the past) |
+| `base`     | No       | Base currency code (defaults to `USD`) |
+| `interval` | No       | Time interval: `5m`, `15m`, `30m`, `1h`, `4h`, `12h`, `1d` (defaults to `1d`) |
+
+```python
+# Basic request (1-day interval)
+result = currency.ohlc().currency('EUR').date('2023-12-25').get()
+
+# With custom interval
+result = currency.ohlc().currency('GBP').date('2023-12-25').interval('1h').get()
+
+# With custom base currency and interval
+result = currency.ohlc().currency('JPY').date('2023-12-25').base('EUR').interval('4h').get()
+
+# XML output
+result = currency.ohlc().currency('EUR').date('2023-12-25').output('XML').get()
+```
+
+**Example response:**
+
+```json
+{
+  "valid": true,
+  "base": "USD",
+  "quote": "EUR",
+  "date": "2023-12-25",
+  "interval": "1d",
+  "ohlc": [
+    {
+      "start": "2023-12-25T00:00:00Z",
+      "open": 0.92000000000000,
+      "high": 0.92500000000000,
+      "low": 0.91800000000000,
+      "close": 0.92200000000000
+    }
+  ]
+}
+```
