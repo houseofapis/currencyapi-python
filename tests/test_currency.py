@@ -4,6 +4,7 @@ from currencyapinet.endpoints.history import History
 from currencyapinet.endpoints.timeframe import Timeframe
 from currencyapinet.endpoints.convert import Convert
 from currencyapinet.endpoints.currencies import Currencies
+from currencyapinet.endpoints.ohlc import Ohlc
 from unittest import TestCase
 
 class Test(TestCase):
@@ -26,3 +27,7 @@ class Test(TestCase):
     def test_currencies_method(self):
         class_under_test = Currency('fakeKey')
         self.assertIsInstance(class_under_test.currencies(), Currencies)
+
+    def test_ohlc_method(self):
+        class_under_test = Currency('fakeKey')
+        self.assertIsInstance(class_under_test.ohlc(), Ohlc)

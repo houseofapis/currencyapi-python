@@ -1,6 +1,6 @@
 import requests
 
-API_VERSION = 'v1'
+API_VERSION = 'v2'
 BASE_URL = 'https://currencyapi.net/api/' + API_VERSION + '/'
 DEFAULT_BASE = 'USD'
 DEFAULT_OUTPUT = 'JSON'

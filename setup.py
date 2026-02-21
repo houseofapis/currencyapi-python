@@ -6,7 +6,7 @@ with open(join(dirname(abspath(__file__)), "README.md")) as f:
 
 setup(
     name="currencyapinet",
-    version="1.1.0",
+    version="2.0.0",
     packages=find_packages(exclude="tests"),
     description="Python wrapper for CurrencyApi.net",
     long_description=README_MD,
