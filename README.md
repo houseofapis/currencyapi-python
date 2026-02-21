@@ -3,6 +3,8 @@
 
 [![PyPI version](https://badge.fury.io/py/currencyapinet.svg)](https://pypi.org/project/currencyapinet/) [![Coverage Status](https://coveralls.io/repos/github/houseofapis/currencyapi-python/badge.svg?branch=main)](https://coveralls.io/github/houseofapis/currencyapi-python?branch=main)
 
+**Note:** API v1 is deprecated and will be retired on **31st July 2026**, at which point all v1 traffic will be redirected to v2. This SDK (v2.0.0+) targets API v2. If you are on an older version of this SDK, please upgrade.
+
 
 <a href="https://currencyapi.net" title="CurrencyApi">CurrencyApi.net</a> provides live currency rates via a REST API. A live currency feed for over 152 currencies, including physical (USD, GBP, EUR + more) and cryptos (Bitcoin, Litecoin, Ethereum + more). A JSON and XML currency api updated every 60 seconds.
 
