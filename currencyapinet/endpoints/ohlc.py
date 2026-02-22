@@ -6,8 +6,8 @@ class Ohlc(Endpoint):
     def __init__(self, api_key: str):
         super().__init__(api_key, OHLC_ENDPOINT)
 
-    def currency(self, currency: str):
-        self.add_param('currency', currency.upper())
+    def quote(self, quote: str):
+        self.add_param('quote', quote.upper())
         return self
 
     def date(self, date: str):

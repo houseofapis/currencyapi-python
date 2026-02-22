@@ -128,23 +128,23 @@ Returns OHLC (Open, High, Low, Close) data for a currency pair on a specific dat
 
 | Parameter  | Required | Description |
 |------------|----------|-------------|
-| `currency` | Yes      | Target currency code (e.g. `EUR`, `GBP`, `BTC`) |
+| `quote`    | Yes      | Quote currency code (e.g. `EUR`, `GBP`, `BTC`) |
 | `date`     | Yes      | Date in `YYYY-MM-DD` format (must be in the past) |
 | `base`     | No       | Base currency code (defaults to `USD`) |
 | `interval` | No       | Time interval: `5m`, `15m`, `30m`, `1h`, `4h`, `12h`, `1d` (defaults to `1d`) |
 
 ```python
 # Basic request (1-day interval)
-result = currency.ohlc().currency('EUR').date('2023-12-25').get()
+result = currency.ohlc().quote('EUR').date('2023-12-25').get()
 
 # With custom interval
-result = currency.ohlc().currency('GBP').date('2023-12-25').interval('1h').get()
+result = currency.ohlc().quote('GBP').date('2023-12-25').interval('1h').get()
 
 # With custom base currency and interval
-result = currency.ohlc().currency('JPY').date('2023-12-25').base('EUR').interval('4h').get()
+result = currency.ohlc().quote('JPY').date('2023-12-25').base('EUR').interval('4h').get()
 
 # XML output
-result = currency.ohlc().currency('EUR').date('2023-12-25').output('XML').get()
+result = currency.ohlc().quote('EUR').date('2023-12-25').output('XML').get()
 ```
 
 **Example response:**
