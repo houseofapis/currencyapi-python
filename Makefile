@@ -4,31 +4,33 @@ LOCAL_DOCKER_IMAGE=houseofapis/currencyapi-python
 CONTAINER_NAME=currencyapi-python
 WORKING_DIR=/app
 PORT=7004
-DOCKER_COMMAND=docker run --rm -v ${PWD}:${WORKING_DIR} -w ${WORKING_DIR} --name ${CONTAINER_NAME} -p ${PORT}:${PORT} ${LOCAL_DOCKER_IMAGE}
-DOCKER_COMMAND_INTERACTIVE=docker run --rm -v ${PWD}:${WORKING_DIR} -w ${WORKING_DIR} --name ${CONTAINER_NAME} -p ${PORT}:${PORT} -it ${LOCAL_DOCKER_IMAGE}
+# Use official image so test/run work without building
+DOCKER_IMAGE ?= python:3.12-slim
+DOCKER_RUN = docker run --rm -v ${PWD}:${WORKING_DIR} -w ${WORKING_DIR} --name ${CONTAINER_NAME} -p ${PORT}:${PORT}
+DOCKER_RUN_IT = docker run --rm -v ${PWD}:${WORKING_DIR} -w ${WORKING_DIR} --name ${CONTAINER_NAME} -p ${PORT}:${PORT} -it
 
 build-image: ## Build docker image
 	docker build -t ${LOCAL_DOCKER_IMAGE} .
 
-test: ## Run the tests
-	${DOCKER_COMMAND} python -m coverage run -m unittest discover
+test: ## Run the tests (no build required)
+	${DOCKER_RUN} ${DOCKER_IMAGE} sh -c "pip install -q -e . coverage && python -m coverage run -m unittest discover"
 
-run: ## Run the sample testing file
-	${DOCKER_COMMAND} python run.py
+run: ## Run the run file (no build required)
+	${DOCKER_RUN} ${DOCKER_IMAGE} sh -c "pip install -q -e . && python run.py"
 
-test-coverage: ## Show test coverage
-	${DOCKER_COMMAND} python -m coverage report
+test-coverage: ## Show test coverage (no build required)
+	${DOCKER_RUN} ${DOCKER_IMAGE} sh -c "pip install -q -e . coverage && python -m coverage run -m unittest discover && python -m coverage report"
 
 setup: ## Setup
-	${DOCKER_COMMAND} python setup.py install
+	${DOCKER_RUN} ${DOCKER_IMAGE} pip install -e .
 
-exec: ## Run test file
-	${DOCKER_COMMAND_INTERACTIVE} sh
+exec: ## Shell into container
+	${DOCKER_RUN_IT} ${DOCKER_IMAGE} sh
 
 build-package: ## Build pip package
 	${DOCKER_COMMAND} python setup.py sdist bdist_wheel
 
-upload-package: ## Upload pip package
+upload-package: ## Upload pip package (requires build-image first)
 	docker run --rm -v ${PWD}:${WORKING_DIR} -v ${HOME}/.pypirc:/root/.pypirc -w ${WORKING_DIR} --name ${CONTAINER_NAME} -p ${PORT}:${PORT} ${LOCAL_DOCKER_IMAGE} python -m twine upload dist/*
 
 help:
