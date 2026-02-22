@@ -8,10 +8,10 @@ class Test(TestCase):
     def setUp(self):
         self.class_under_test = Ohlc('fakekey')
 
-    def test_ohlc_currency(self):
-        self.class_under_test.currency('eUr')
-        self.assertEqual('EUR', self.class_under_test.param.get('currency'))
-        self.assertIsInstance(self.class_under_test.currency('EUR'), Ohlc)
+    def test_ohlc_quote(self):
+        self.class_under_test.quote('eUr')
+        self.assertEqual('EUR', self.class_under_test.param.get('quote'))
+        self.assertIsInstance(self.class_under_test.quote('EUR'), Ohlc)
 
     def test_ohlc_date(self):
         self.class_under_test.date('2023-12-25')
@@ -36,16 +36,16 @@ class Test(TestCase):
             {'key': 'fakekey', 'output': 'JSON'},
             self.class_under_test._build_url_params()
         )
-        self.class_under_test.currency('EUR')
+        self.class_under_test.quote('EUR')
         self.class_under_test.date('2023-12-25')
         self.assertDictEqual(
-            {'key': 'fakekey', 'output': 'JSON', 'currency': 'EUR', 'date': '2023-12-25'},
+            {'key': 'fakekey', 'output': 'JSON', 'quote': 'EUR', 'date': '2023-12-25'},
             self.class_under_test._build_url_params()
         )
         self.class_under_test.base('gbP')
         self.class_under_test.interval('1h')
         self.assertDictEqual(
-            {'key': 'fakekey', 'output': 'JSON', 'currency': 'EUR', 'date': '2023-12-25', 'base': 'GBP', 'interval': '1h'},
+            {'key': 'fakekey', 'output': 'JSON', 'quote': 'EUR', 'date': '2023-12-25', 'base': 'GBP', 'interval': '1h'},
             self.class_under_test._build_url_params()
         )
 
