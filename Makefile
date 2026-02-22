@@ -27,11 +27,15 @@ setup: ## Setup
 exec: ## Shell into container
 	${DOCKER_RUN_IT} ${DOCKER_IMAGE} sh
 
-build-package: ## Build pip package
-	${DOCKER_COMMAND} python setup.py sdist bdist_wheel
+build-package: ## Build pip package (sdist + wheel to dist/)
+	${DOCKER_RUN} ${DOCKER_IMAGE} sh -c "pip install -q build && python -m build"
 
-upload-package: ## Upload pip package (requires build-image first)
-	docker run --rm -v ${PWD}:${WORKING_DIR} -v ${HOME}/.pypirc:/root/.pypirc -w ${WORKING_DIR} --name ${CONTAINER_NAME} -p ${PORT}:${PORT} ${LOCAL_DOCKER_IMAGE} python -m twine upload dist/*
+upload-package: ## Upload to PyPI (requires dist/ and ~/.pypirc credentials)
+	${DOCKER_RUN} ${DOCKER_IMAGE} sh -c "pip install -q twine && twine upload dist/*" \
+		-v ${HOME}/.pypirc:/root/.pypirc:ro
+
+release: ## Build and upload to PyPI (use after version bump; requires ~/.pypirc)
+	$(MAKE) build-package && $(MAKE) upload-package
 
 help:
 	@grep -h -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
